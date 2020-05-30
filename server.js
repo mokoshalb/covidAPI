@@ -80,7 +80,6 @@ var getcountries = setInterval(async () => {
   const casesPerOneMillionColIndex = 10;
   const deathsPerOneMillionColIndex = 11;
   const testsColIndex = 12;
-  const testsPerOneMillionColIndex = 13;
 
   // minus totalColumns to skip last row, which is total
   for (let i = 0; i < countriesTableCells.length - totalColumns; i += 1) {
@@ -182,26 +181,12 @@ var getcountries = setInterval(async () => {
         10
       );
     }
-    // get tests per one million population
-    if (i % totalColumns === testsPerOneMillionColIndex) {
-      let testsPerOneMillion = cell.children.length != 0? cell.children[0].data : "";
-      result[result.length - 1].testsPerOneMillion = parseInt(
-        testsPerOneMillion.trim().replace(/,/g, "") || "0",
-        10
-      );
-    }
+
   }
 
   db.set("countries", result);
   console.log("Updated The Countries", result);
 }, 150000);
-
-app.get("/", async function(request, response) {
-  let a = await db.fetch("all");
-  response.send(
-    `${a.cases} cases are reported of the COVID-19 Novel Coronavirus strain<br> ${a.deaths} have died from it <br>\n${a.recovered} have recovered from it <br> Get the endpoint /all to get information for all cases <br> get the endpoint /countries for getting the data sorted country wise`
-  );
-});
 
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
