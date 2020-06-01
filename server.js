@@ -75,11 +75,12 @@ var getcountries = setInterval(async () => {
   const deathsColIndex = 4;
   const todayDeathsColIndex = 5;
   const curedColIndex = 6;
-  const activeColIndex = 8;
-  const criticalColIndex = 9;
-  const casesPerOneMillionColIndex = 10;
-  const deathsPerOneMillionColIndex = 11;
-  const testsColIndex = 12;
+  const activeColIndex = 7;
+  const criticalColIndex = 8;
+  const casesPerOneMillionColIndex = 9;
+  const deathsPerOneMillionColIndex = 10;
+  const testsColIndex = 11;
+  const testsPerOneMillionColIndex = 12;
 
   // minus totalColumns to skip last row, which is total
   for (let i = 0; i < countriesTableCells.length - totalColumns; i += 1) {
@@ -178,6 +179,14 @@ var getcountries = setInterval(async () => {
       let totalTests = cell.children.length != 0? cell.children[0].data : "";
       result[result.length - 1].totalTests = parseInt(
         totalTests.trim().replace(/,/g, "") || "0",
+        10
+      );
+    }
+    // get total tests per one million population
+    if (i % totalColumns === testsPerOneMillionColIndex) {
+      let testsPerOneMillion = cell.children.length != 0? cell.children[0].data : "";
+      result[result.length - 1].testsPerOneMillion = parseInt(
+        testsPerOneMillion.trim().replace(/,/g, "") || "0",
         10
       );
     }
