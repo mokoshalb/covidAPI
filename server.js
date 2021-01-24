@@ -136,7 +136,10 @@ var getcountries = setInterval(async () => {
     }
     // get cured
     if (i % totalColumns === curedColIndex) {
-      let cured = cell.children.length != 0 ? cell.children[0].data : "";
+      let cured = "";
+      if(cell.children.length != 0) {
+        cured = cell.children[0].children ? cell.children[0].children[0].data : cell.children[0].data;
+      }
       result[result.length - 1].recovered = parseInt(
         cured.trim().replace(/,/g, "") || 0,
         10
