@@ -12,7 +12,6 @@
     "cors": "*",
     "express": "*",
     "quick.db": "*",
-    "request": "*",
     "better-sqlite3": "*"
   }
 }
