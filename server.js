@@ -1,12 +1,12 @@
 var express = require("express");
 var app = express();
-var request = require("request");
 var axios = require("axios");
 var cheerio = require("cheerio");
-var db = require("quick.db");
 var cors = require('cors')
-
 app.use(cors());
+
+const { QuickDB } = require("quick.db");
+const db = new QuickDB();
 
 app.use('/', express.static('www'));
 
@@ -205,17 +205,17 @@ var listener = app.listen(process.env.PORT, function() {
 });
 
 app.get("/all/", async function(req, res) {
-  let all = await db.fetch("all");
+  let all = await db.get("all");
   res.send(all);
 });
 
 app.get("/countries/", async function(req, res) {
-  let countries = await db.fetch("countries");
+  let countries = await db.get("countries");
   res.send(countries);
 });
 
 app.get("/countries/:country", async function(req, res) {
-  let countries = await db.fetch("countries");
+  let countries = await db.get("countries");
   let country = countries.find(
   	e => {
         	if(e.country.toLowerCase().localeCompare(req.params.country.toLowerCase()) === 0)
