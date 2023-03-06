@@ -13,14 +13,5 @@
     "express": "^4.16.3",
     "quick.db": "^6.3.2",
     "request": "*"
-  },
-  "repository": {
-    "url": "https://github.com/javieraviles/covidAPI"
-  },
-  "license": "MIT",
-  "keywords": [
-    "API",
-    "coronavirus",
-    "covid"
-  ]
+  }
 }
