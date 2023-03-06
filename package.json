@@ -4,7 +4,7 @@
   "description": "A simple Node API for getting coronavirus cases from scraped information.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "*",
@@ -13,5 +13,5 @@
     "express": "*",
     "quick.db": "*",
     "request": "*"
-  },
+  }
 }
